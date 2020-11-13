@@ -8,7 +8,8 @@ const {
     STATUS_PROJECT
 } = process.env as any;
 
-if (STATUS_PROJECT === 'DEVELOPMENT') {
+console.log(PORT, STATUS_PROJECT);
+if (STATUS_PROJECT == 'DEVELOPMENT') {
     new App({
         PORT
     });
