@@ -1,8 +1,14 @@
 import React from 'react';
 
+import Routes from './routes';
+import Default from './styles/default';
+
 function App(){
     return(
-        <h1>Agora foi</h1>
+        <div className="App">
+            <Default />
+            <Routes/>
+        </div>
     );
 }
 
