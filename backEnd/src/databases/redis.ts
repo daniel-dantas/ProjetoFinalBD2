@@ -1,5 +1,7 @@
 import redis from 'redis';
-import Dontenv from 'dotenv';
+import DotEnv from 'dotenv';
+
+DotEnv.config();
 
 const {
     REDIS_HOST,

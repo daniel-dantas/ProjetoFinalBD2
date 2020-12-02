@@ -3,6 +3,16 @@ import Dotenv from 'dotenv';
 
 Dotenv.config();
 
-const mongo = mongoose.connect(`mongodb://${process.env.MOGO_HOST}:${process.env.MONGO_PORT}/ProjetoBD2`,{useNewUrlParser:true, useUnifiedTopology: true});
+class Mongo {
+    public static async connect(){
+        await mongoose.connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/ProjetoBD2`,{
+            useNewUrlParser:true, 
+            useUnifiedTopology: true,
+            useFindAndModify: false,
+            useCreateIndex: true
+        });
+    }
+}
 
-export default mongo;
+
+export default Mongo;
