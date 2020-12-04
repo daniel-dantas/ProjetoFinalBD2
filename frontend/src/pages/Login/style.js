@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import {Main} from '../../styles/global';
 import Colors from '../../styles/colors';
-import loginBackground from '../../assets/img/background-login.png';
+import loginBackground from '../../assets/img/background-login.jpg';
 import arrowIcon from '../../assets/icon/arrow-forward.png'
 
 export const MainLogin = styled(Main)`
@@ -13,15 +13,16 @@ export const MainLogin = styled(Main)`
 `;
 
 export const FormLogin = styled.form`
-    width: 30%;
+    width: 35%;
     height:auto;
-    min-height: 380px;
+    min-height: 60vh;
     background-color: #FFF;
     border-radius: 8px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
+    box-shadow: 4px 4px 16px rgba(39,76,119,0.15);
 `;
 
 export const TitleLogin = styled.h2`
