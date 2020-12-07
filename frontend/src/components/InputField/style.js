@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import Colors from '../../styles/colors';
 
 export const Input = styled.input`
-    width: 75%;
-    height: 55px;
+    height: 50px;
     border-radius: 8px;
     outline: none;
     border: none;
     padding: 0 12px;
+    margin-left: 15px;
     font-size: 1.1em;
     color: ${Colors.primaryColor};
     font-weight: 450;
