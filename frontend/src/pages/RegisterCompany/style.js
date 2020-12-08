@@ -23,7 +23,3 @@ export const RegisterForm = styled.form`
     justify-content: center;
     align-items: center;
 `;
-
-export const RegisterButton = styled(Button)`
-    width: 40%;
-`;

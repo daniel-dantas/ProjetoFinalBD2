@@ -3,8 +3,8 @@ import {useFormik} from 'formik';
 
 import Input from '../../components/InputField';
 
-import {Title} from '../../styles/global';
-import {MainRegister, RegisterForm, RegisterButton} from './style';
+import {Title, RegisterButton} from '../../styles/global';
+import {MainRegister, RegisterForm} from './style';
 
 function RegisterCompany(){
 

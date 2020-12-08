@@ -11,6 +11,7 @@ export const Main = styled.div`
     color: ${Colors.primaryColor};
 `;
 
+
 export const Button = styled.button`
     width: 80%;
     height: 55px;
@@ -29,6 +30,10 @@ export const Button = styled.button`
     &:hover{
         opacity:0.95;
     }
+`;
+
+export const RegisterButton = styled(Button)`
+    width: 40%;
 `;
 
 export const Title = styled.h2`
