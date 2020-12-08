@@ -1,10 +1,11 @@
 import React from 'react';
 import {useFormik} from 'formik';
+import {Link} from 'react-router-dom';
 
 import Input from '../../components/InputField';
 
 import {Title, RegisterButton} from '../../styles/global';
-import {MainRegister, RegisterForm} from './style';
+import {MainRegister, RegisterForm,Menssage} from './style';
 
 function RegisterCompany(){
 
@@ -33,6 +34,7 @@ function RegisterCompany(){
        <MainRegister>
             <RegisterForm onSubmit={formik.handleSubmit}>
                 <Title>Cadastro</Title>
+                <Menssage>Já é cadastrado ? <Link to="login"><b>Login</b></Link></Menssage>
                 <Input placeholder="Seu email" type="text" id="email" name="email" onChange={formik.handleChange} value={formik.values.email} width={75+"%"}></Input>
                 <Input placeholder="Seu nome" type="text" id="name" name="name" onChange={formik.handleChange} value={formik.values.name} width={35+"%"}></Input>
                 <Input placeholder="Seu sobrenome" type="text" id="surname" name="surname" onChange={formik.handleChange} value={formik.values.surname} width={35+"%"}></Input>

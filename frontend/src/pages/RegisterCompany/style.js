@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-import {Button, Main} from '../../styles/global';
+import {Main} from '../../styles/global';
+import Colors from '../../styles/colors';
 import loginBackground from '../../assets/img/background-login.jpg';
 
 
@@ -22,4 +23,18 @@ export const RegisterForm = styled.form`
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+`;
+
+export const Menssage = styled.p`
+    font-weight: bold;
+    color: #252422;
+    
+    &::selection{
+        background: transparent;
+    }
+
+    b{
+        color: ${Colors.primaryColor};
+        cursor: pointer;
+    }
 `;
