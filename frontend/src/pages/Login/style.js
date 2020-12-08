@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {Main} from '../../styles/global';
+import {Main,Button} from '../../styles/global';
 import Colors from '../../styles/colors';
 import loginBackground from '../../assets/img/background-login.jpg';
 import arrowIcon from '../../assets/icon/arrow-forward.png'
@@ -25,15 +25,6 @@ export const FormLogin = styled.form`
     box-shadow: 4px 4px 16px rgba(39,76,119,0.15);
 `;
 
-export const TitleLogin = styled.h2`
-    color: ${Colors.primaryColor};
-    margin-top: 15px;
-
-    &::selection{
-        background: transparent;
-    }
-`;
-
 export const RegisterMenssage = styled.p`
     font-weight: bold;
     color: #252422;
@@ -48,20 +39,7 @@ export const RegisterMenssage = styled.p`
     }
 `;
 
-export const ButtonLogin = styled.button`
-    width: 80%;
-    height: 55px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    border: none;
-    font-weight: bold;
-    font-size: 1.2em;
-    color: #FFF;
-    background-color: ${Colors.primaryColor};
-    outline: none; 
-    cursor: pointer;
-    transition: all 0.2s;
-    position: relative;
+export const ButtonLogin = styled(Button)`
 
     &::before{
         content: " ";
@@ -74,9 +52,5 @@ export const ButtonLogin = styled.button`
         background-image: url(${arrowIcon});
         background-position: center;
         background-repeat: no-repeat;
-    }
-
-    &:hover{
-        opacity:0.95;
     }
 `;
