@@ -29,7 +29,34 @@ class EgressController {
     }
 
     public static async read(req: Request, res: Response){
-        return res.status(200).json({message: 'read!'});
+        const query = req.query as {page: string};
+        
+
+        try {
+
+            let result: IEgress[] = [];
+
+            if (query.page){
+                result = await EgressModel.find().limit(Number(8)).skip((Number(query.page) - 1) * 8);
+            }else {
+                result = await EgressModel.find();
+            }
+            
+            return res.status(200).json(result.map(egress => {
+                return {
+                    id: egress.id,
+                    name: egress.name,
+                    email: egress.email,
+                    technologies: egress.technologies,
+                    description: egress.description,
+                }
+            }) as IEgress[]);
+
+        }catch (err ){
+            return res.status(400).json({});
+        }
+
+        
 
     }
 
