@@ -38,7 +38,13 @@ class ContractorController {
     }
 
     public static async update(req: Request, res: Response){
-        return res.status(200).json({message: 'update!'});
+        const contractor = req.body as IContractor;
+
+        ContractorModel.updateOne({email: contractor.email}, contractor).then(() => {
+            return res.status(200).json({message: 'User updated'});
+        }).catch(err => {
+            return res.status(400).json({message: 'Error in update'});
+        });
     }
 
 }

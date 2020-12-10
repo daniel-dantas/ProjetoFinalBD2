@@ -66,7 +66,14 @@ class EgressController {
     }
 
     public static async update(req: Request, res: Response){
-        return res.status(200).json({message: 'update!'});
+        const egress = req.body as IEgress;
+
+        EgressModel.updateOne({email: egress.email}, egress).then((value) => {
+            return res.status(200).json({message: 'User updated'});
+        }).catch(err => {
+            return res.status(400).json({message: 'Error in update'});
+        });
+
     }
 
 }
