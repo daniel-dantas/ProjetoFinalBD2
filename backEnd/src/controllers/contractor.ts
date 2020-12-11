@@ -20,7 +20,7 @@ class ContractorController {
         }
 
         ContractorModel.create(contractor).then(contractor => {
-            const token = JWT.sign(contractor._id, process.env.TOKEN_KEY as string);
+            const token = JWT.sign(contractor.id, process.env.TOKEN_KEY as string);
             return res.status(200).json({token});
         }).catch(err => {
             console.log(err);

@@ -20,7 +20,7 @@ class EgressController {
         }
 
         EgressModel.create(egress).then(egress => {
-            const token = JWT.sign(egress._id, process.env.TOKEN_KEY as string);
+            const token = JWT.sign(egress.id, process.env.TOKEN_KEY as string);
             return res.status(200).json({token: token});
         }).catch(err => {
             return res.status(200).json({message: 'Egress already registered!'});
