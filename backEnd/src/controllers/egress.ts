@@ -31,6 +31,7 @@ class EgressController {
     public static async read(req: Request, res: Response){
         const query = req.query as {page: string};
         
+
         try {
 
             let result: IEgress[] = [];
