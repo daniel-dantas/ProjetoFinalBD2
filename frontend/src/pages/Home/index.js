@@ -1,7 +1,8 @@
 import React from 'react';
 
+import NavBar from '../../components/NavMenu';
 
-import {TopBar,HomeContent,StudentCard,ContentFilters, ContentCards} from './style';
+import {HomeContent,StudentCard,ContentFilters, ContentCards} from './style';
 
 import userAvatar from '../../assets/img/perfil-avatar.jpg';
 import github from '../../assets/icon/github-icon.png';
@@ -13,9 +14,7 @@ function Home() {
 
     return(
         <HomeContent>
-            <TopBar>
-                <h2>Contrata meu aluno</h2>
-            </TopBar>
+            <NavBar></NavBar>
             <ContentFilters>
                 <h3>Filtros</h3>
                 <select>
@@ -42,9 +41,9 @@ function Home() {
                             </a>
                         </div>
                     <ul>
-                            {technologies.map((tech,index) => (
-                                <li key={index}>{tech}</li>
-                            ))}
+                        {technologies.map((tech,index) => (
+                            <li key={index}>{tech}</li>
+                        ))};
                     </ul>
                     <button>Mais</button> 
             </StudentCard>

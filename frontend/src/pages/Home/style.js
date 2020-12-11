@@ -3,22 +3,6 @@ import {Main} from '../../styles/global';
 
 import Colors from '../../styles/colors';
 
-export const TopBar = styled.div`
-    width: 100%;
-    height: 70px;
-    position: fixed;
-    top: 0;
-    background-color: ${Colors.primaryColor};
-    display: flex;
-    align-items: center;
-    z-index: 100;
-
-    h2{
-        color: #FFF;
-        margin-left: 25px;
-    }
-`;
-
 export const HomeContent = styled(Main)`
     width: 100%;
     height: auto;
@@ -50,10 +34,10 @@ export const ContentFilters = styled.div`
         border: solid 2px ${Colors.secondaryColor};
         outline: none;
         background-color: #FFF;
-        margin-left: 20px;
+        margin-left:25px;
         padding: 0px 5px;
         position: relative;
-        margin-right: 20px;
+        margin-right: 25px;
     }
 `
 
@@ -129,6 +113,13 @@ export const StudentCard = styled.div`
         border-radius: 6px;
         color: #FFF;
         font-weight: bold;
-        background-color: ${Colors.primaryColor};
+        background-color: ${Colors.fontColor};
+        transition: all 0.2s;
+        box-shadow: inset 2px 2px 8px ${Colors.primaryColor}, 6px 6px 16px rgba(255,255,255,0.5), -6px -6px 16px rgba(255,255,255,0.5);
+        cursor: pointer;
+
+        &:hover{
+            box-shadow: none;
+        }
     }
 `
