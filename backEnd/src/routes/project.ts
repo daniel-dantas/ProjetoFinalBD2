@@ -8,5 +8,5 @@ const route = Router();
 route.use(AuthMiddleware);
 route.post('/', ProjectController.create);
 route.get('/', ProjectController.read);
-
+route.put('/', ProjectController.update);
 export default route;

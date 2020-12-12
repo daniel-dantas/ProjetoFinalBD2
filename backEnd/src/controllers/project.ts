@@ -16,6 +16,7 @@ class ProjectController {
                 return res.status(200).json({
                     message: 'Project created successfully',
                     project: {
+                        id: project.id,
                         projectName: project.projectName,
                         description: project.description,
                         technologies: project.technologies,
@@ -69,6 +70,27 @@ class ProjectController {
             }
         }
 
+    }
+
+    public static async update(req: Request, res: Response){
+        
+        const reqBody = req.body as IProject;
+
+        const userId = req.headers.authorization;
+
+        const contractor = await ContractorModel.findOne({_id: userId});
+
+        if (contractor) {
+            ProjectModel.update({_id: reqBody.id}, reqBody).then(() => {
+                return res.status(200).json({message: 'Project update!'})
+            }).catch(err => {
+                return res.status(500).json({message: 'User not found!'});
+            });
+        } else {
+            return res.status(400).json({
+                message: 'User not found!'
+            });
+        }
     }
 }
 
