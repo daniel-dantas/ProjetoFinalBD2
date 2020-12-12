@@ -7,5 +7,6 @@ const route = Router();
 
 route.use(AuthMiddleware);
 route.post('/', ProjectController.create);
+route.get('/', ProjectController.read);
 
 export default route;
