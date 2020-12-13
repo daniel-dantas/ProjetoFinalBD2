@@ -4,6 +4,7 @@ import ContractorModel from '../models/contractor';
 import ProjectModel from '../models/project';
 import EgressModel from '../models/egress';
 import IProject from '../@Types/IProject';
+import IEgress from '../@Types/IEgress';
 
 class ProjectController {
     public static async create(req: Request, res: Response){
@@ -46,8 +47,35 @@ class ProjectController {
         
         if (contractor) {
             const myProjects = await ProjectModel.find({contractor: contractor});
-            
-            return res.status(200).json(myProjects);
+
+            const devsAux = [];
+            const projectsAux: IProject[] = [];
+
+            for(let project of myProjects) {
+                for(let dev of project.devs as IEgress[]){
+                    const devAux = await EgressModel.findOne({_id: dev});
+                    devsAux.push({
+                        name: devAux?.name,
+                        surname: devAux?.surname,
+                        email: devAux?.email,
+                        description: devAux?.description,
+                    });
+                }
+                projectsAux.push({
+                    projectName: project.projectName,
+                    description: project.description,
+                    technologies: project.technologies,
+                    contractor: {
+                        name: contractor.name,
+                        surname: contractor.surname,
+                        email: contractor.email,
+                        companyName: contractor.companyName,
+                    },
+                    devs: devsAux,
+                } as IProject);
+            }
+
+            return res.status(200).json(projectsAux);
         }else{
 
             const egress = await EgressModel.findOne({_id: userId});
