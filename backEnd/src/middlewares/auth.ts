@@ -47,5 +47,7 @@ export default (req: Request, res: Response, next: NextFunction) => {
         }
     });
 
+    req.headers.authorization = userId as string;
+
     next();
 } 
