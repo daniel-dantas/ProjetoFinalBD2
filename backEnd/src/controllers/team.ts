@@ -1,6 +1,7 @@
 import { Request, Response, json } from 'express';
 
 import EgressModel from '../models/egress';
+import ProjectModel from '../models/project';
 
 import Redis from '../databases/redis';
 import IEgress from '../@Types/IEgress';
@@ -93,6 +94,35 @@ class TeamController {
                 });
             }
         });
+    }
+
+    public static finallyTeam (req: Request, res: Response){
+        const userId = req.headers.authorization;
+
+        const reqBody = req.body as { project: string };
+
+        Redis.get(userId as string, async (err, value) => {
+            if(value){
+                const team = JSON.parse(value);
+
+                const project = await ProjectModel.findOne({_id: reqBody.project});
+
+                if(project){
+                    project.devs = project.devs?.concat(team);
+                    await ProjectModel.update({_id: project.id}, project);
+                    Redis.del(userId as string);
+                    return res.status(200).json({
+                        message: 'Team finally!'
+                    });
+                }else{
+                    return res.status(400).json({message: 'Project not found!'})
+                }
+
+            }else{
+                return res.status(400).json({message: 'Team empty'})
+            }
+        });
+
     }
 
 }
