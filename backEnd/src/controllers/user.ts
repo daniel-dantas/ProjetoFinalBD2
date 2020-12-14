@@ -4,6 +4,7 @@ import DotEnv from 'dotenv';
 import ContractorModel from '../models/contractor';
 import EgressModel from '../models/egress';
 import JWT from 'jsonwebtoken';
+import IContractor from '../@Types/IContractor';
 
 DotEnv.config();
 
@@ -47,6 +48,40 @@ class UserController{
         }
 
     }
+
+    public static async UserMe (req: Request, res: Response){
+        const userId = req.headers.authorization;
+
+        const contractor = await ContractorModel.findOne({_id: userId});
+
+        if(contractor){
+            return res.status(200).json({user: {
+                account: 'contractor',
+                id: contractor.id,
+                name: contractor.name,
+                companyName: contractor.companyName,
+                email: contractor.email,
+                cnpj: contractor.cnpj,
+            }});
+        }else{
+            const egress = await EgressModel.findOne({_id: {userId}});
+
+            if(egress){
+                return res.status(200).json({user: {
+                    account: 'egress',
+                    id: egress.id,
+                    name: egress.name,
+                    email: egress.email,
+                    description: egress.description,
+                    technologies: egress.technologies,
+                }});
+            }else{
+                return res.status(400).json({message: 'User not found!'});
+            }
+        }
+
+    }
+
 }
 
 export default UserController;
