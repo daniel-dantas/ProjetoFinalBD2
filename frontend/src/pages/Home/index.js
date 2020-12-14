@@ -29,120 +29,25 @@ function Home() {
                 </select>
             </ContentFilters>
             <ContentCards>
-            <StudentCard>
-                    <img src={userAvatar} alt="User avatar" className="userAvatar"/>
-                    <h3>Jorge Sobrinho Neto</h3>
-                    <p>jorgeneto@email.com</p>
-                        <div className="social-links">
-                            <a>
-                                <img src={github} alt="Github link" />
-                            </a>
-                            <a>
-                                <img src={linkedin} alt="Linkedin link" />
-                            </a>
-                        </div>
-                    <ul>
-                        {technologies.map((tech,index) => (
-                            <li key={index}>{tech}</li>
-                        ))}
-                    </ul>
-                    <ModalButton />
-            </StudentCard>
-            <StudentCard>
-                    <img src={userAvatar} alt="User avatar" className="userAvatar"/>
-                    <h3>Jorge Sobrinho Neto</h3>
-                    <p>jorgeneto@email.com</p>
-                        <div className="social-links">
-                            <a>
-                                <img src={github} alt="Github link" />
-                            </a>
-                            <a>
-                                <img src={linkedin} alt="Linkedin link" />
-                            </a>
-                        </div>
-                    <ul>
+                <StudentCard>
+                        <img src={userAvatar} alt="User avatar" className="userAvatar"/>
+                        <h3>Jorge Sobrinho Neto</h3>
+                        <p>jorgeneto@email.com</p>
+                            <div className="social-links">
+                                <a href="#">
+                                    <img src={github} alt="Github link" />
+                                </a>
+                                <a href="#">
+                                    <img src={linkedin} alt="Linkedin link" />
+                                </a>
+                            </div>
+                        <ul>
                             {technologies.map((tech,index) => (
                                 <li key={index}>{tech}</li>
                             ))}
-                    </ul>
-                    <button>Mais</button> 
-            </StudentCard>
-            <StudentCard>
-                    <img src={userAvatar} alt="User avatar" className="userAvatar"/>
-                    <h3>Jorge Sobrinho Neto</h3>
-                    <p>jorgeneto@email.com</p>
-                        <div className="social-links">
-                            <a>
-                                <img src={github} alt="Github link" />
-                            </a>
-                            <a>
-                                <img src={linkedin} alt="Linkedin link" />
-                            </a>
-                        </div>
-                    <ul>
-                            {technologies.map((tech,index) => (
-                                <li key={index}>{tech}</li>
-                            ))}
-                    </ul>
-                    <button>Mais</button> 
-            </StudentCard>
-            <StudentCard>
-                    <img src={userAvatar} alt="User avatar" className="userAvatar"/>
-                    <h3>Jorge Sobrinho Neto</h3>
-                    <p>jorgeneto@email.com</p>
-                        <div className="social-links">
-                            <a>
-                                <img src={github} alt="Github link" />
-                            </a>
-                            <a>
-                                <img src={linkedin} alt="Linkedin link" />
-                            </a>
-                        </div>
-                    <ul>
-                            {technologies.map((tech,index) => (
-                                <li key={index}>{tech}</li>
-                            ))}
-                    </ul>
-                    <button>Mais</button> 
-            </StudentCard>
-            <StudentCard>
-                    <img src={userAvatar} alt="User avatar" className="userAvatar"/>
-                    <h3>Jorge Sobrinho Neto</h3>
-                    <p>jorgeneto@email.com</p>
-                        <div className="social-links">
-                            <a>
-                                <img src={github} alt="Github link" />
-                            </a>
-                            <a>
-                                <img src={linkedin} alt="Linkedin link" />
-                            </a>
-                        </div>
-                    <ul>
-                            {technologies.map((tech,index) => (
-                                <li key={index}>{tech}</li>
-                            ))}
-                    </ul>
-                    <button>Mais</button> 
-            </StudentCard>
-            <StudentCard>
-                    <img src={userAvatar} alt="User avatar" className="userAvatar"/>
-                    <h3>Jorge Sobrinho Neto</h3>
-                    <p>jorgeneto@email.com</p>
-                        <div className="social-links">
-                            <a>
-                                <img src={github} alt="Github link" />
-                            </a>
-                            <a>
-                                <img src={linkedin} alt="Linkedin link" />
-                            </a>
-                        </div>
-                    <ul>
-                            {technologies.map((tech,index) => (
-                                <li key={index}>{tech}</li>
-                            ))}
-                    </ul>
-                    <button>Mais</button> 
-            </StudentCard>
+                        </ul>
+                        <ModalButton />
+                </StudentCard>
             </ContentCards>
         </HomeContent>
     );
