@@ -1,6 +1,7 @@
 import React from 'react';
 
 import NavBar from '../../components/NavMenu';
+import ModalButton from '../../components/ModalButton';
 
 import {HomeContent,StudentCard,ContentFilters, ContentCards} from './style';
 
@@ -43,9 +44,9 @@ function Home() {
                     <ul>
                         {technologies.map((tech,index) => (
                             <li key={index}>{tech}</li>
-                        ))};
+                        ))}
                     </ul>
-                    <button>Mais</button> 
+                    <ModalButton />
             </StudentCard>
             <StudentCard>
                     <img src={userAvatar} alt="User avatar" className="userAvatar"/>
