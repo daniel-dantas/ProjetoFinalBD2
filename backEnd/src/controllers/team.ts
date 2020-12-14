@@ -105,11 +105,12 @@ class TeamController {
             if(value){
                 const team = JSON.parse(value);
 
-                const project = await ProjectModel.findOne({_id: reqBody.project});
+                const project = await ProjectModel.findOne({where: {id: reqBody.project}}) as any;
 
                 if(project){
-                    project.devs = project.devs?.concat(team);
-                    await ProjectModel.update({_id: project.id}, project);
+                    project.devs = JSON.parse(project.devs);
+                    project.devs = project.devs?.concat(team) as any[];
+                    await ProjectModel.update({...project, devs: JSON.stringify(project.devs)}, {where: {id: reqBody.project}});
                     Redis.del(userId as string);
                     return res.status(200).json({
                         message: 'Team finally!'
