@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import AuthContext from '../../contexts/auth';
 
 import {ContentMenu} from './style';
@@ -11,19 +13,32 @@ function Menu({open}){
 
     return(
         <ContentMenu open={open}>
-            <div className="user">
-                <img src={userImg} alt="User" />
-                <h3>{`${(user) ? user.name : ''}`}</h3>
-                <p>Loopis Jr</p>
-            </div>
-            <ul>
-                <li>Meu Perfil</li>
-                <li>Meus Projetos</li>
-                <li>Minhas Equipes</li>
-                <li>Criar Projeto</li>
-            </ul>
+            {
+                (user) ? (
+                    <>
+                    <div className="user">
+                        <img src={userImg} alt="User" />
+                        <h3>{`${(user) ? user.name : ''}`}</h3>
+                        {(user.account === 'contractor') ? (
+                            <p>{user.companyName}</p>
+                        ) : <></>}
+                    </div>
+                    <ul>
+                        <li>Meu Perfil</li>
+                        <li>
+                            <Link to="/projects">
+                                Meus Projetos
+                            </Link>
+                        </li>
+                        <li>Minhas Equipes</li>
+                        <li>Criar Projeto</li>
+                    </ul>
 
-            <button onClick={logout}>Sair</button>
+                    <button onClick={logout}>Sair</button>
+                    </>
+                ) : <></>
+            }
+            
         </ContentMenu>
     );
 }
