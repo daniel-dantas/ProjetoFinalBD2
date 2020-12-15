@@ -7,13 +7,20 @@ import AuthContext from '../../contexts/auth';
 
 export default function PrivateRouter({ component: Component, ...rest }) {
 
+    const [userAuth, setUserAuth] = useState({});
+
     const { user } = useContext(AuthContext);
+
+    useEffect(() => {
+        setUserAuth(user);
+    }, [user]);
+
 
     return (
         <Route 
             {...rest}
             render={
-                user ? (
+                userAuth ? (
                 () => <Component />
                 ) : (
                 () => <Redirect to="/login"/>

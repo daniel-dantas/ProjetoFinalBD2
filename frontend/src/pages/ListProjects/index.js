@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect, useContext, useState } from 'react';
+
+import AuthContext from '../../contexts/auth';
+import API from '../../services/api';
 
 import NavBar from '../../components/NavMenu';
 import {MainListProjects,ListContent} from './style';
@@ -9,25 +12,41 @@ function ListProjects(){
     const projects = ['Escola','Budega','Projeto3','Projeto5','Escola','Budega','Projeto3','Projeto5'];
     const technologies = ['React','React Native','Node'];
 
+    const [myProjects, setMyProjects] = useState([]);
+
+    const { token } = useContext(AuthContext);
+
+    useEffect(async () => {
+        
+        if(token.length > 0){
+            const resp = await API.get('/project', {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+    
+            setMyProjects(resp.data);
+        }
+
+    }, [token]);
+
     return(
        <MainListProjects>
            <NavBar></NavBar>
            <ListContent>
                <ul className="list">
-                   {projects.map(project => (
+                   {myProjects.map(project => (
                        <li className="itemList">
-                            <h2>{project}</h2>
+                            <h2>{project.projectName}</h2>
                             <button>
                                 <img src={deleteIcon}></img>
                             </button>
                             <ul>
                                 {
-                                    technologies.map(tech => (
-                                        <li>{tech} |</li>
+                                    project.technologies.map(tech => (
+                                        <li key={tech}>{tech} |</li>
                                     ))
                                 }
                             </ul>
-                            <p>Mussum Ipsum, cacilds vidis litro abertis. Copo furadis é disculpa de bebadis, arcu quam euismod magna. Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. A ordem dos tratores não altera o pão duris. Pra lá , depois divoltis porris, paradis.</p>
+                            <p>{project.description}</p>
                        </li>
                    ))}
                </ul>
