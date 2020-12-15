@@ -23,7 +23,7 @@ function Routes(){
                 <PrivateRouter exact path="/profile" component={Profile} /> 
                 <PrivateRouter exact path="/project" component={RegisterProject} />
                 <PrivateRouter exact path="/projects"  component={ListProjects} />
-                <PrivateRouter exact path="/team" component={ListTeam} />
+                <Route exact path="/team" component={ListTeam} />
             </Switch> 
         </BrowserRouter>
     );

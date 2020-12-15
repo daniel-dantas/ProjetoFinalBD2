@@ -10,7 +10,7 @@ import userAvatar from '../../assets/img/perfil-avatar.jpg';
 function ListTeam(){
     const [openModal, setOpenModal] = useState(false);
 
-    const projects = ['projeto1','projeto2','projeto3']
+    const projects = ['projeto1','projeto2','projeto3',]
 
     return(
         <TeamContent>
@@ -46,6 +46,7 @@ function ListTeam(){
                                 </label>
                             ))
                         }
+                        <button>Concluido</button>
                     </UserProjects>
                 </Modal>
             </ContentCards>
