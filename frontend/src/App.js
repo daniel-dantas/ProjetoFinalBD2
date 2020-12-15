@@ -13,7 +13,6 @@ function App(){
                 <Routes/>
             </div>
         </AuthProvider>
-        
     );
 }
 
