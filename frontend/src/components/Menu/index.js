@@ -31,7 +31,14 @@ function Menu({open}){
                             </Link>
                         </li>
                         <li>Minhas Equipes</li>
-                        <li>Criar Projeto</li>
+                        {(user.account === 'contractor' ? (
+                            <li>
+                                <Link to="/project">
+                                    Criar Projeto
+                                </Link>
+                            </li>
+                        ): <></>)}
+                        
                     </ul>
 
                     <button onClick={logout}>Sair</button>
