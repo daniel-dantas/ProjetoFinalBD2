@@ -10,6 +10,7 @@ import RegisterStudent from './pages/RegisterStudent';
 import Profile from './pages/Profile';
 import RegisterProject from './pages/RegisterProject';
 import ListProjects from './pages/ListProjects';
+import ListTeam from './pages/ListTeam';
 
 function Routes(){
     return(
@@ -22,6 +23,7 @@ function Routes(){
                 <PrivateRouter exact path="/profile" component={Profile} /> 
                 <PrivateRouter exact path="/project" component={RegisterProject} />
                 <PrivateRouter exact path="/projects"  component={ListProjects} />
+                <PrivateRouter exact path="/team" component={ListTeam} />
             </Switch> 
         </BrowserRouter>
     );
