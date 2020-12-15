@@ -5,13 +5,20 @@ import BurguerIcon from '../BurguerIcon';
 import {NavBar} from './style';
 import teamIcon from '../../assets/icon/team-icon.png';
 
+import { Link } from 'react-router-dom';
+
 function NavMenu(){
 
     return(
         <NavBar>
             <BurguerIcon></BurguerIcon>
-            <h2>Contrata meu aluno</h2>
-            <img src={teamIcon} alt="team"></img>
+            <Link to='/'>
+                <h2>Contrata meu aluno</h2>
+            </Link>
+
+            <Link to='/team'>
+                <img src={teamIcon} alt="team"></img>
+            </Link>
         </NavBar>
     );
 }

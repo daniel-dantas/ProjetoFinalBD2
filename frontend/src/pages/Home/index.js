@@ -6,6 +6,8 @@ import {HomeContent,StudentCard,ContentFilters, ContentCards} from './style';
 
 import API from '../../services/api';
 
+import AuthContext from '../../contexts/auth';
+
 import userAvatar from '../../assets/img/perfil-avatar.jpg';
 import github from '../../assets/icon/github-icon.png';
 import linkedin from '../../assets/icon/linkedin-icon.png';
@@ -15,6 +17,8 @@ function Home() {
     const [graduates, setGraduates] = useState([]);
     const [technology, setTechnology] = useState('');
     const [filtered, setFiltered] = useState([]);
+
+    const { token } = useContext(AuthContext);
 
     useEffect(() => {
         API.get('/egress').then(resp => {
@@ -41,7 +45,15 @@ function Home() {
         }));
     }, [technology]);
 
-   
+    const insertTeam = (id) => {
+        API.post('/team/insert', {egress: id}, {
+            headers: { Authorization: `Bearer ${token}`}
+        }).then(() => {
+            alert('Adicionado!');
+        }).catch(err => {
+            alert('erro ao adicionar');
+        })
+    }
 
     return(
         <HomeContent>
@@ -83,7 +95,7 @@ function Home() {
                                     <li key={index}>{tech}</li>
                                 ))}
                             </ul>
-                            <button>Adicionar</button>
+                            <button onClick={() => insertTeam(grad.id)}>Adicionar</button>
                         </StudentCard>
                     ))}
                     </>
