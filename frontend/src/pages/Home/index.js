@@ -1,7 +1,6 @@
 import React, {useEffect, useState, useContext} from 'react';
 
 import NavBar from '../../components/NavMenu';
-import ModalButton from '../../components/ModalButton';
 
 import {HomeContent,StudentCard,ContentFilters, ContentCards} from './style';
 
@@ -84,7 +83,7 @@ function Home() {
                                     <li key={index}>{tech}</li>
                                 ))}
                             </ul>
-                            <ModalButton />
+                            <button>Adicionar</button>
                         </StudentCard>
                     ))}
                     </>

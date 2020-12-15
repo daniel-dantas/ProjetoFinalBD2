@@ -106,20 +106,19 @@ export const StudentCard = styled.div`
     }
 
     button{
-        width: 60px;
+        width: 70px;
         height: 30px;
         border: none;
         outline: none;
         border-radius: 6px;
         color: #FFF;
         font-weight: bold;
-        background-color: ${Colors.fontColor};
+        background-color: ${Colors.primaryColor};
         transition: all 0.2s;
-        box-shadow: inset 2px 2px 8px ${Colors.primaryColor}, 6px 6px 16px rgba(255,255,255,0.5), -6px -6px 16px rgba(255,255,255,0.5);
         cursor: pointer;
 
         &:hover{
-            box-shadow: none;
+            opacity: 0.9;
         }
     }
 `

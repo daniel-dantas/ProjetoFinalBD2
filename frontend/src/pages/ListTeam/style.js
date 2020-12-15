@@ -127,7 +127,7 @@ export const UserProjects = styled.div`
 
         .label-project{
             width: 80%;
-            height: 60px;
+            height: 55px;
             border: solid 2px ${Colors.tertiaryColor};
             display: flex;
             align-items: center;
@@ -143,5 +143,18 @@ export const UserProjects = styled.div`
             .input-project{
                 margin-right: 15px;
             }
+        }
+
+        button{
+            width: 150px;
+            height: 50px;
+            outline: none;
+            border: none;
+            background-color: ${Colors.primaryColor};
+            cursor: pointer;
+            color: #FFF;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-top: 30px;
         }
 `;
