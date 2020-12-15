@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter,Route} from 'react-router-dom';
+import {BrowserRouter,Route, Router, Switch} from 'react-router-dom';
 
 import PrivateRouter from './components/PrivateRouter';
 
@@ -15,14 +15,16 @@ import ListTeam from './pages/ListTeam';
 function Routes(){
     return(
         <BrowserRouter>
-            <PrivateRouter path="/" exact component={Home} />
-            <Route path="/login" exact component={Login} />
-            <Route path="/company" exact component={RegisterCompany} />
-            <Route path="/student" exact component={RegisterStudent}/>
-            <Route path="/profile" component={Profile} /> 
-            <Route path="/project" component={RegisterProject}/>
-            <Route patch="/projects" component={ListProjects} />
-            <Route patch="/team" component={ListTeam} />
+            <Switch>
+                <PrivateRouter path="/" exact component={Home} />
+                <Route path="/login" exact component={Login} />
+                <Route path="/company" exact component={RegisterCompany} />
+                <Route path="/student" exact component={RegisterStudent}/>
+                <PrivateRouter exact path="/profile" component={Profile} /> 
+                <PrivateRouter exact path="/project" component={RegisterProject} />
+                <PrivateRouter exact path="/projects"  component={ListProjects} />
+                <PrivateRouter exact path="/team" component={ListTeam} />
+            </Switch> 
         </BrowserRouter>
     );
 }

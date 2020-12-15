@@ -13,7 +13,7 @@ function Menu({open}){
         <ContentMenu open={open}>
             <div className="user">
                 <img src={userImg} alt="User" />
-                {/* <h3>{`${user.name}`}</h3> */}
+                <h3>{`${(user) ? user.name : ''}`}</h3>
                 <p>Loopis Jr</p>
             </div>
             <ul>
