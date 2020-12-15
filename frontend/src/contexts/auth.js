@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import Api from '../services/api';
 // import { Container } from './styles';
 
-const AuthContext = createContext({user: {}, token: '', setToken: () => {}});
+const AuthContext = createContext({user: {}, token: '', setToken: () => {}, logout: () => {}});
 
 export const AuthProvider = ({children}) => {
 
@@ -22,7 +22,6 @@ export const AuthProvider = ({children}) => {
                 authorization: `Bearer ${token}`
             }
         }).then((res) => {
-            console.log(res);
             setUser(res.data.user);
         }).catch((err) => {
             console.log(err);
@@ -30,8 +29,13 @@ export const AuthProvider = ({children}) => {
         });
     }, [token]);
 
+    const logout = () => {
+        setToken('');
+        setUser(null);
+    }
+
     return (
-        <AuthContext.Provider value={{user, token, setToken: setToken}}>
+        <AuthContext.Provider value={{user, token, setToken: setToken, logout}}>
             {children}
         </AuthContext.Provider>
     );

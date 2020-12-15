@@ -45,6 +45,7 @@ class EgressController {
                 return {
                     id: egress.id,
                     name: egress.name,
+                    surname: egress.surname,
                     email: egress.email,
                     technologies: egress.technologies,
                     description: egress.description,
