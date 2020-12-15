@@ -8,7 +8,7 @@ const route = Router();
 route.use(AuthMiddleware);
 route.post('/insert', TeamController.insert);
 route.get('/read', TeamController.read);
-route.delete('/remove', TeamController.remove);
+route.post('/remove', TeamController.remove);
 route.post('/finally', TeamController.finallyTeam);
 
 export default route;

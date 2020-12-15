@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Route, Redirect } from 'react-router-dom'
 
