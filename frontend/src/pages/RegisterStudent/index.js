@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {useFormik} from 'formik';
+
+import { useHistory } from 'react-router-dom';
+
+import API from '../../services/api';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import AuthContext from '../../contexts/auth';
 
 import Input from '../../components/InputField';
 import {Title,RegisterButton} from '../../styles/global';
 import {MainStudent,FormStudent,Personal,Professional} from './style';
 
 function RegisterStudent(){
+
+    const history = useHistory();
+    const { setToken } = useContext(AuthContext);
 
     const formik = useFormik({
         initialValues:{
@@ -16,7 +26,7 @@ function RegisterStudent(){
             location: '',
             password: '',
             confirm: '',
-            technologies: [],
+            technologies: '',
             github: '',
             linkedin: '',
             area: ''
@@ -25,11 +35,28 @@ function RegisterStudent(){
             if(values.password !== values.confirm){
                 alert("As senhas não batem")
             }else{
-                console.log(JSON.stringify(values));
+                // console.log(JSON.stringify(values));
+                register(values);
             }
             
         }
     });
+
+    const register = async (values) => {
+        const egress = values;
+
+        egress.technologies = egress.technologies.split(', ');
+
+        try {
+            console.log(egress);
+            const resp = await API.post('/egress', egress);
+            await AsyncStorage.setItem('token', resp.data.token);
+            setToken(resp.data.token);
+            history.push('/');
+        }catch(err){
+            alert('Error ao cadastrar!');
+        }
+    }
 
     return(
         <MainStudent>
@@ -45,7 +72,7 @@ function RegisterStudent(){
                         <Input placeholder="Confirmar senha" type="password" id="confirm" name="confirm" onChange={formik.handleChange} value={formik.values.confirm} width={37+"%"}></Input>
                 </Personal>
                 <Professional>
-                    <Input placeholder="Quais tecnologias você usa ?" type="text" id="technologies" name="technologies" onChange={formik.handleChange} value={formik.values.technologies} width={85+"%"}></Input>
+                    <Input placeholder="Quais tecnologias você usa ?(Separe por virgula)" type="text" id="technologies" name="technologies" onChange={formik.handleChange} value={formik.values.technologies} width={85+"%"}></Input>
                     <Input placeholder="Seu Github(Opcional)" type="text" id="github" name="github" onChange={formik.handleChange} value={formik.values.github} width={85+"%"}></Input>
                     <Input placeholder="Seu Luinkedin(Opcional)" type="text" id="linkedin" name="linkedin" onChange={formik.handleChange} value={formik.values.linkedin} width={85+"%"}></Input>
                     <Input placeholder="Em que área você atua ? " type="text" id="area" name="area" onChange={formik.handleChange} value={formik.values.area} width={85+"%"}></Input>
