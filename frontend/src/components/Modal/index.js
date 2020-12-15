@@ -1,11 +1,11 @@
-import React from 'react';
+import React,{useState} from 'react';
 
-import {ContentModal,Content} from './style';
+import {ContentModal} from './style';
 
-function Modal({openModal}){
+function Modal({openModal,children}){
     return(
        <ContentModal openModal={openModal}>
-           <Content></Content>
+           {children}
        </ContentModal>
     );
 }

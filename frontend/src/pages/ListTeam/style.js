@@ -113,3 +113,35 @@ export const CloseTeam = styled.button`
     font-weight: bold;
     border-radius: 8px;
 `;
+
+export const UserProjects = styled.div`
+    width: 50%;
+    height: 65vh;
+    background-color: #FFF;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+
+        .label-project{
+            width: 80%;
+            height: 60px;
+            border: solid 2px ${Colors.tertiaryColor};
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+            border-radius: 8px;
+            transition: all 0.2s;
+            
+            h4{
+                margin-left: 15px;
+            }
+
+            .input-project{
+                margin-right: 15px;
+            }
+        }
+`;
