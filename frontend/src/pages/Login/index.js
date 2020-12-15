@@ -26,8 +26,7 @@ function Login(){
         try{
             const response = await api.post('/user/auth', data);
             storageData(response.data.token);
-            console.log(getData());
-            alert('logado');
+            history.push('/');
         }catch(err){
             alert(err);
         }
