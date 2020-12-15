@@ -9,6 +9,7 @@ import RegisterCompany from './pages/RegisterCompany';
 import RegisterStudent from './pages/RegisterStudent';
 import Profile from './pages/Profile';
 import RegisterProject from './pages/RegisterProject';
+import ListProjects from './pages/ListProjects';
 
 function Routes(){
     return(
@@ -19,6 +20,7 @@ function Routes(){
             <Route path="/student" exact component={RegisterStudent}/>
             <Route path="/profile" component={Profile} /> 
             <Route path="/project" component={RegisterProject}/>
+            <Route patch="/projects" component={ListProjects} />
         </BrowserRouter>
     );
 }
