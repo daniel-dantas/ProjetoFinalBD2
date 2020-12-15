@@ -13,20 +13,35 @@ export const AuthProvider = ({children}) => {
     useEffect(async () => {
         const tokenAux = await AsyncStorage.getItem('token');
         setToken(tokenAux);
+        if(tokenAux){
+            Api.post('/user/me', {}, {
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            }).then((res) => {
+                setUser(res.data.user);
+            }).catch((err) => {
+                console.log(err);
+                setUser(null);
+            });
+        }
     }, [])
 
     useEffect(async () => {
         console.log(token);
-        Api.post('/user/me', {}, {
-            headers: {
-                authorization: `Bearer ${token}`
-            }
-        }).then((res) => {
-            setUser(res.data.user);
-        }).catch((err) => {
-            console.log(err);
-            setUser(null);
-        });
+        if(token){
+            Api.post('/user/me', {}, {
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            }).then((res) => {
+                setUser(res.data.user);
+            }).catch((err) => {
+                console.log(err);
+                setUser(null);
+            });
+        }
+        
     }, [token]);
 
     const logout = () => {

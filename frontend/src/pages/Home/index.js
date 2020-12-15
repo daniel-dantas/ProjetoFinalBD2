@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 
 import NavBar from '../../components/NavMenu';
 import ModalButton from '../../components/ModalButton';
@@ -42,7 +42,7 @@ function Home() {
         }));
     }, [technology]);
 
-    const technologies = ['React','React Native','Node'];
+   
 
     return(
         <HomeContent>
@@ -51,12 +51,16 @@ function Home() {
                 <h3>Filtros</h3>
                 <select value={technology} onChange={(e) => setTechnology(e.target.value)}>
                     <option value=''>Tecnologias</option>
-                    <option value='REACT'>React</option>
-                    <option value='VUE'>Vue</option>
-                    <option value='ANGULAR'>Angular</option>
-                </select>
-                <select>
-                    <option>Área de Atuação</option>
+                    <option value='VUE'>VUE</option>
+                    <option value='REACT'>REACT</option>
+                    <option value='ANGULAR'>ANGULAR</option>
+                    <option value='JAVA'>JAVA</option>
+                    <option value='C++'>C++</option>
+                    <option value='C#'>C#</option>
+                    <option value='PYTHON'>PYTHON</option>
+                    <option value='GO'>GO</option>
+                    <option value='NEXT.JS'>NEXT.JS</option>
+                    <option value='REACT NATIVE'>REACT NATIVE</option>
                 </select>
             </ContentFilters>
             <ContentCards>
