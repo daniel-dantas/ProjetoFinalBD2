@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import RegisterCompany from './pages/RegisterCompany';
 import RegisterStudent from './pages/RegisterStudent';
 import Profile from './pages/Profile';
+import RegisterProject from './pages/RegisterProject';
 
 function Routes(){
     return(
@@ -17,6 +18,7 @@ function Routes(){
             <Route path="/company" exact component={RegisterCompany} />
             <Route path="/student" exact component={RegisterStudent}/>
             <Route path="/profile" component={Profile} /> 
+            <Route path="/project" component={RegisterProject}/>
         </BrowserRouter>
     );
 }
