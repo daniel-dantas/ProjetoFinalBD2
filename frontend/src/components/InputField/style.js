@@ -14,6 +14,7 @@ export const Input = styled.input`
     font-weight: 450;
     box-shadow: 6px 6px 16px rgba(255,255,255,0.5), -6px -6px 16px rgba(255,255,255,0.5), inset 2px 2px 8px rgba(209,205,199, 0.5);
     background-color: ${Colors.tertiaryColor};
+    margin-bottom: 10px;
 
     &::placeholder{
         font-weight: 400;

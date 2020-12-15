@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import AuthContext from '../../contexts/auth';
 
 import {ContentMenu} from './style';
 import userImg from '../../assets/img/perfil-avatar.jpg';
 
 function Menu({open}){
+
+    const { user, logout } = useContext(AuthContext);
+
     return(
         <ContentMenu open={open}>
             <div className="user">
                 <img src={userImg} alt="User" />
-                <h3>Jorge Neto Sobrinho</h3>
+                <h3>{`${user.name}`}</h3>
                 <p>Loopis Jr</p>
-                
             </div>
             <ul>
                 <li>Meu Perfil</li>
@@ -19,7 +23,7 @@ function Menu({open}){
                 <li>Criar Projeto</li>
             </ul>
 
-            <button>Sair</button>
+            <button onClick={logout}>Sair</button>
         </ContentMenu>
     );
 }

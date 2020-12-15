@@ -1,15 +1,46 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import NavBar from '../../components/NavMenu';
 import ModalButton from '../../components/ModalButton';
 
 import {HomeContent,StudentCard,ContentFilters, ContentCards} from './style';
 
+import API from '../../services/api';
+
 import userAvatar from '../../assets/img/perfil-avatar.jpg';
 import github from '../../assets/icon/github-icon.png';
 import linkedin from '../../assets/icon/linkedin-icon.png';
 
 function Home() {
+
+    const [graduates, setGraduates] = useState([]);
+    const [technology, setTechnology] = useState('');
+    const [filtered, setFiltered] = useState([]);
+
+    useEffect(() => {
+        API.get('/egress').then(resp => {
+            setGraduates(resp.data);
+            setFiltered(resp.data);
+        });
+    }, []);
+
+    useEffect(() => {
+        setFiltered(graduates.filter(value => {
+            let respAux = false;
+
+            if(technology.length === 0){
+                return true;
+            }
+
+            for(let tech of value.technologies){
+                if(tech.toLocaleUpperCase() === technology.toLocaleUpperCase()){
+                    respAux = tech.toLocaleUpperCase() === technology.toLocaleUpperCase();
+                }
+            }
+            
+            return respAux;
+        }));
+    }, [technology]);
 
     const technologies = ['React','React Native','Node'];
 
@@ -18,36 +49,43 @@ function Home() {
             <NavBar></NavBar>
             <ContentFilters>
                 <h3>Filtros</h3>
-                <select>
-                    <option>Tecnologias</option>
-                    <option>React</option>
-                    <option>Vue</option>
-                    <option>Angular</option>
+                <select value={technology} onChange={(e) => setTechnology(e.target.value)}>
+                    <option value=''>Tecnologias</option>
+                    <option value='REACT'>React</option>
+                    <option value='VUE'>Vue</option>
+                    <option value='ANGULAR'>Angular</option>
                 </select>
                 <select>
                     <option>Área de Atuação</option>
                 </select>
             </ContentFilters>
             <ContentCards>
-                <StudentCard>
-                        <img src={userAvatar} alt="User avatar" className="userAvatar"/>
-                        <h3>Jorge Sobrinho Neto</h3>
-                        <p>jorgeneto@email.com</p>
-                            <div className="social-links">
-                                <a href="#">
-                                    <img src={github} alt="Github link" />
-                                </a>
-                                <a href="#">
-                                    <img src={linkedin} alt="Linkedin link" />
-                                </a>
-                            </div>
-                        <ul>
-                            {technologies.map((tech,index) => (
-                                <li key={index}>{tech}</li>
-                            ))}
-                        </ul>
-                        <ModalButton />
-                </StudentCard>
+                {(filtered.length) ? (
+                    <>
+                    {filtered.map((grad) => (
+                        <StudentCard>
+                            <img src={userAvatar} alt="User avatar" className="userAvatar"/>
+                            <h3>{grad.name}</h3>
+                            <p>{grad.email}</p>
+                                <div className="social-links">
+                                    <a href="#">
+                                        <img src={github} alt="Github link" />
+                                    </a>
+                                    <a href="#">
+                                        <img src={linkedin} alt="Linkedin link" />
+                                    </a>
+                                </div>
+                            <ul>
+                                {grad.technologies.map((tech,index) => (
+                                    <li key={index}>{tech}</li>
+                                ))}
+                            </ul>
+                            <ModalButton />
+                        </StudentCard>
+                    ))}
+                    </>
+                ) : <h3>Nenhum egresso cadastrado!</h3>}
+                
             </ContentCards>
         </HomeContent>
     );
