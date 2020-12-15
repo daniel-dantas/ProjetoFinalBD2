@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {useFormik} from 'formik';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import api from '../../services/api';
+
+import AuthContext from '../../contexts/auth';
 
 import {MainLogin,FormLogin, RegisterMenssage, ButtonLogin} from './style';
 import {Title} from '../../styles/global';
 import InputField from '../../components/InputField';
 
 function Login(){
+    const history = useHistory();
 
     const formik = useFormik({
         initialValues:{
@@ -14,9 +20,43 @@ function Login(){
             password: '',
         },
         onSubmit: values => {
-            console.log(JSON.stringify(values));
+            makeLogin(values);
         }
     });
+
+    async function makeLogin(data){
+        try{
+            const response = await api.post('/user/auth', data);
+            storageData(response.data.token);
+            history.push('/');
+        }catch(err){
+            alert('Usuario ou senha incorreto!');
+        }
+    }
+
+    const { setToken } = useContext(AuthContext);
+
+    //Configurando o AsyncStorage;
+
+    const storageData = async (value) => {
+        try{
+            await AsyncStorage.setItem('token', value);
+            setToken(value);
+        }catch(err){
+            console.log(err);
+        }
+    }
+
+    const getData = async () => {
+        try{
+            const value = await AsyncStorage.getItem('token');
+            if(value !== null){
+                console.log(value);
+            }
+        }catch(err){
+            console.log(err);
+        }
+    }
 
     return(
         <MainLogin>
