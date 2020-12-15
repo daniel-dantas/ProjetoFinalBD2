@@ -20,7 +20,7 @@ function RegisterCompany(){
             confirm: ''
         },
         onSubmit: values => {
-            if(values.password != values.confirm){
+            if(values.password !== values.confirm){
                 alert("As senhas não batem")
             }else{
                 console.log(JSON.stringify(values));
