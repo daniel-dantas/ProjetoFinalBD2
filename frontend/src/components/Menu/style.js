@@ -27,8 +27,9 @@ export const ContentMenu = styled.div`
 
             img{
                 max-width: 55%;
-                border-radius: 100px;
+                border-radius: 100%;
                 border: solid 2px;
+                margin: 0 auto;
             }
 
             h3{

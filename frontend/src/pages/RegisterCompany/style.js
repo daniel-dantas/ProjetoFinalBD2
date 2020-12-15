@@ -28,6 +28,8 @@ export const RegisterForm = styled.form`
 export const Menssage = styled.p`
     font-weight: bold;
     color: #252422;
+    width: 90%;
+    text-align: center;
     
     &::selection{
         background: transparent;

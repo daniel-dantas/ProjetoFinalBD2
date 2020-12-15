@@ -13,7 +13,7 @@ import API from '../../services/api';
 
 function ListTeam(){
     const [openModal, setOpenModal] = useState(false);
-    const projects = ['projeto1','projeto2','projeto3']
+    const projects = ['projeto1','projeto2','projeto3'];
 
     const [id, setId] = useState('');
 
@@ -66,6 +66,7 @@ function ListTeam(){
                                 </label>
                             ))
                         }
+                        <button>Concluido</button>
                     </UserProjects>
                 </Modal>
             </ContentCards>
