@@ -32,7 +32,7 @@ export const AuthProvider = ({children}) => {
         
     }, [])
 
-    useEffect(async () => {
+    useEffect(() => {
         console.log(token);
         if(token){
             Api.post('/user/me', {}, {
